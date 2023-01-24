@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-web-app
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: k8s-web-app
+  template:
+    metadata:
+      labels:
+        app: k8s-web-app
+    spec:
+      containers:
+      - name: k8s-web-app
+        image: suketshah/k8s-web-hello:2.0.0
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 200m
+            memory: 256Mi
+        ports:
+        - containerPort: 3000
